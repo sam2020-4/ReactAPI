@@ -1,0 +1,21 @@
+
+
+.title{
+  text-transform: capitalize;
+  color: brown;
+  text-shadow: 3px 3px rgb(0, 0, 0);
+}
+
+.findjokes{  
+  text-align: center;
+}
+
+.displayjokes{  
+  text-align: center;
+}
+
+.btn{
+  margin-top: 15px;
+}
+
+
