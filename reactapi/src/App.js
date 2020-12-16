@@ -1,21 +1,34 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect, searchjoke } from 'react';
 import './App.css';
 import axios from 'axios';
 
 function App() {
 
-  useEffect( async () => {
-    const result = axios.get('https://api.chucknorris.io/jokes/random');
-    console.log(result);
+  const [state, setState] = useState({
+    chuckjoke:''
+  })
 
+  useEffect(() => {
+    fetchData();     
   },[])
+  
+  // fetching data from API
+  const fetchData = async () => {
+    const result = await axios.get('https://api.chucknorris.io/jokes/random');
+    console.log(result.data.value);
+    setState({
+      ...state, chuckjoke:result.data.value
+    })
+  }
 
+  // search chuckjoke
+  // const seearch
 
   return (
     // project title
     <div>
       <div className="App jumbotron text-center">
-      <h1 className="title">Welcome to Chuck Norris React Api Jokes</h1>
+      <h1 className="title">Welcome to Chuck Norris Jokes App!!</h1>
       </div>
 
       {/* // project content here */}
@@ -33,11 +46,18 @@ function App() {
 
           <div className="col-md-8 displayjokes">
             <h3 className="dd">View Jokes</h3>
-            <p>kkkkkkkkkkkkkkkkkkkkk</p>          
-          </div>          
-
+            <p>{state.chuckjoke}</p>          
+          </div> 
         </div>
       </div>
+      
+      {/* footer */}
+      <div className="container text-center pt-5">
+        <div className="row">
+          <p className="text-center">For now you can Refresh the site to see the Jokes..... Search button is under design.</p>
+        </div>
+      </div>
+
     </div>
   );
 }
